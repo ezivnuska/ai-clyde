@@ -9,7 +9,7 @@ var bot = new RiveScript();
 
 bot.loadDirectory("brain");
 
-app.get('https://ai-clyde.herokuapp.com:443/', function(req, res){
+app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
