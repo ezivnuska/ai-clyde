@@ -9,7 +9,7 @@
     "socket.io": "1.2.0"
   },
   "scripts": {
-    "start": "node ."
+    "start": "node index.js"
   },
   "engines": {
     "node": "7.10.0"
