@@ -10,5 +10,8 @@
   },
   "scripts": {
     "start": "node ."
+  },
+  "engines": {
+    "node": "7.10.0"
   }
 }
