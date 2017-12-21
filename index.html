@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; text-align: center; }
+      #bot { width: 500px; height: 60px; margin: 50px auto; overflow: visible }
+      form { background: #000; margin-top: 20px; padding: 3px; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #container { height: 60px; overflow:auto; display:flex; flex-direction:column-reverse; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 0 10px; line-height: 30px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <div id="bot">
+      <div id="container">
+        <ul id="messages"></ul>
+      </div>
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+    </div>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+        var container = document.getElementById('container');
+        container.scrollTop = container.scrollHeight;
+      });
+    </script>
+  </body>
+</html>
